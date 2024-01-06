@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class EnemyController : MonoBehaviour
 {
@@ -213,6 +214,23 @@ public class EnemyController : MonoBehaviour
                 movementController.SetSpeed(2);
             }
             
+        }
+
+        if (movementController.lastMovingDirection == "left")
+        {
+            animator.SetInteger("direction", 0);
+        }
+        else if (movementController.lastMovingDirection == "right")
+        {
+            animator.SetInteger("direction", 1);
+        }
+        else if (movementController.lastMovingDirection == "up")
+        {
+            animator.SetInteger("direction", 2);
+        }
+        else if (movementController.lastMovingDirection == "down")
+        {
+            animator.SetInteger("direction", 3);
         }
 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -374,7 +375,8 @@ public class GameManager : MonoBehaviour
             //Display gamover text
             gameOverText.enabled = true;
 
-            yield return new WaitForSeconds(3);
+            //yield return new WaitForSeconds(3);
+            SceneManager.LoadSceneAsync("EndGameScene");
         }
 
         StartCoroutine(Setup());
