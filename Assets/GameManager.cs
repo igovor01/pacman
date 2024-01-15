@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
             blackBackground.enabled = true;
             //Activate background
             yield return new WaitForSeconds(0.1f);
+
+            
         }
 
         blackBackground.enabled = false;
@@ -313,13 +315,14 @@ public class GameManager : MonoBehaviour
         if (pelletsLeft == 0)
         {
             currentLevel++;
+
             clearedLevel = true;
+            
             StopGame();
+
             yield return new WaitForSeconds(1);
             StartCoroutine(Setup());
         }
-
-        //Check how many pellets were eaten - we are not gonna need this
 
         //Is this a power pellet
         if (nodeController.isPowerPellet)
@@ -371,12 +374,14 @@ public class GameManager : MonoBehaviour
 
         if(lives <= 0)
         {
-            newGame = true;
+            SceneManager.LoadSceneAsync("EndGameScene");
+
             //Display gamover text
             gameOverText.enabled = true;
 
-            //yield return new WaitForSeconds(3);
-            SceneManager.LoadSceneAsync("EndGameScene");
+            yield return new WaitForSeconds(3);
+
+            newGame = true;
         }
 
         StartCoroutine(Setup());

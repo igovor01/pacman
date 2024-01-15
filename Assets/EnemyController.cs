@@ -203,7 +203,15 @@ public class EnemyController : MonoBehaviour
         {
             if (isFrightened)
             {
-                movementController.SetSpeed(1);
+                if (gameManager.currentLevel > 1)
+                {
+                    movementController.SetSpeed(gameManager.currentLevel);
+                }
+                else
+                {
+                    movementController.SetSpeed(1);
+                }
+                
             }
             else if(ghostNodeState == GhostNodeStatesEnum.respawning)
             {
@@ -211,26 +219,17 @@ public class EnemyController : MonoBehaviour
             }
             else
             {
-                movementController.SetSpeed(2);
+
+                if (gameManager.currentLevel > 1)
+                {
+                    movementController.SetSpeed(gameManager.currentLevel+1);
+                }
+                else
+                {
+                    movementController.SetSpeed(2);
+                }
             }
             
-        }
-
-        if (movementController.lastMovingDirection == "left")
-        {
-            animator.SetInteger("direction", 0);
-        }
-        else if (movementController.lastMovingDirection == "right")
-        {
-            animator.SetInteger("direction", 1);
-        }
-        else if (movementController.lastMovingDirection == "up")
-        {
-            animator.SetInteger("direction", 2);
-        }
-        else if (movementController.lastMovingDirection == "down")
-        {
-            animator.SetInteger("direction", 3);
         }
 
     }
